@@ -1,1 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Redeem Zone | Gaming Rewards</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050509;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(137,70,255,.18),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(0,214,255,.12),transparent 25%);
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:99;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 7%;
+    background:rgba(5,5,9,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #252536;
+}
+
+.logo{
+    text-decoration:none;
+    color:white;
+    font-size:22px;
+    font-weight:1000;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#9b5cff;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+}
+
+.nav-links a{
+    color:#a9a9bb;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+/* HERO */
+
+.hero{
+    min-height:88vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:70px 20px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.small-title{
+    display:inline-block;
+    padding:8px 15px;
+    border:1px solid #7040bd;
+    border-radius:30px;
+    background:#120c20;
+    color:#c8a9ff;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.hero h1{
+    margin-top:22px;
+    font-size:clamp(55px,14vw,105px);
+    line-height:.9;
+    letter-spacing:-5px;
+    font-weight:1000;
+}
+
+.hero h1 span{
+    color:#9b5cff;
+    text-shadow:0 0 35px #713bd8;
+}
+
+.hero p{
+    margin:25px auto;
+    max-width:600px;
+    color:#9292a6;
+    font-size:15px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 25px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:900;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.btn-main{
+    color:white;
+    background:linear-gradient(135deg,#a45cff,#6331d1);
+    box-shadow:0 10px 35px rgba(137,70,255,.25);
+}
+
+.btn-dark{
+    color:white;
+    background:#11111a;
+    border:1px solid #303044;
+}
+
+/* COIN CARD */
+
+.coin-card{
+    width:min(520px,100%);
+    margin:40px auto 0;
+    padding:25px;
+    border-radius:24px;
+    background:
+        linear-gradient(145deg,#151522,#0d0d15);
+    border:1px solid #373052;
+    box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
+
+.coin-label{
+    color:#77778c;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.coin-number{
+    margin:7px 0;
+    font-size:45px;
+    font-weight:1000;
+    color:#ffd75e;
+}
+
+.coin-info{
+    color:#77778c;
+    font-size:11px;
+}
+
+/* SECTIONS */
+
+.section{
+    width:min(1150px,100%);
+    margin:auto;
+    padding:80px 6%;
+}
+
+.section-top{
+    margin-bottom:28px;
+}
+
+.section-top small{
+    color:#9b5cff;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.section-top h2{
+    margin-top:5px;
+    font-size:35px;
+}
+
+/* OFFERS */
+
+.offer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.offer{
+    padding:25px;
+    border:1px solid #292939;
+    border-radius:20px;
+    background:linear-gradient(145deg,#11111a,#0c0c12);
+    transition:.2s;
+}
+
+.offer:hover{
+    transform:translateY(-5px);
+    border-color:#7543c7;
+}
+
+.offer-icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.offer h3{
+    margin-bottom:7px;
+}
+
+.offer p{
+    color:#858597;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.offer button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    color:white;
+    background:#272436;
+    font-weight:bold;
+}
+
+/* REDEEM */
+
+.redeem-area{
+    max-width:600px;
+    margin:auto;
+    padding:28px;
+    background:#101017;
+    border:1px solid #2b2b3d;
+    border-radius:22px;
+}
+
+.redeem-area input{
+    width:100%;
+    padding:15px;
+    margin:15px 0 10px;
+    background:#07070c;
+    color:white;
+    border:1px solid #303044;
+    border-radius:11px;
+    outline:none;
+}
+
+.redeem-area button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:11px;
+    background:#8d4cff;
+    color:white;
+    font-weight:900;
+}
+
+/* CODES */
+
+.code-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.code-card{
+    padding:22px;
+    border-radius:18px;
+    background:#101017;
+    border:1px solid #292939;
+}
+
+.code-card strong{
+    display:block;
+    font-size:17px;
+    word-break:break-all;
+}
+
+.code-card small{
+    display:block;
+    color:#77778c;
+    margin:10px 0 15px;
+}
+
+.copy{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:9px;
+    background:#242433;
+    color:white;
+    font-weight:bold;
+}
+
+/* STEPS */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.step{
+    padding:25px;
+    border-radius:20px;
+    background:#101017;
+    border:1px solid #292939;
+}
+
+.step-number{
+    color:#9b5cff;
+    font-size:28px;
+    font-weight:1000;
+}
+
+.step p{
+    margin-top:8px;
+    color:#858597;
+    font-size:13px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:35px 20px;
+    border-top:1px solid #20202e;
+    color:#66667a;
+    font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .nav{
+        flex-direction:column;
+        gap:13px;
+    }
+
+    .nav-links{
+        gap:13px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .hero{
+        min-height:82vh;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .offer-grid,
+    .code-grid,
+    .steps{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:60px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+
+<a href="#home" class="logo">
+REDEEM<span>ZONE</span>
+</a>
+
+<div class="nav-links">
+<a href="#home">HOME</a>
+<a href="#offers">OFFERS</a>
+<a href="#redeem">REDEEM</a>
+<a href="#codes">CODES</a>
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="small-title">
+🎮 GAMING REWARDS PLATFORM
+</div>
+
+<h1>
+REDEEM <span>ZONE</span>
+</h1>
+
+<p>
+Complete eligible gaming offers, collect coins
+and discover available rewards.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#offers" class="btn btn-main">
+🔥 EARN COINS
+</a>
+
+<a href="#codes" class="btn btn-dark">
+🎁 VIEW CODES
+</a>
+
+</div>
+
+<div class="coin-card">
+
+<div class="coin-label">
+YOUR COIN BALANCE
+</div>
+
+<div class="coin-number">
+<span id="coins">0</span> 🪙
+</div>
+
+<div class="coin-info">
+Reward balance on this device
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFERS -->
+
+<section class="section" id="offers">
+
+<div class="section-top">
+
+<small>EARN REWARDS</small>
+
+<h2>Featured Offers</h2>
+
+</div>
+
+<div class="offer-grid">
+
+<div class="offer">
+
+<div class="offer-icon">🎁</div>
+
+<h3>Gaming Offers</h3>
+
+<p>
+Complete eligible offers and earn rewards.
+</p>
+
+<button onclick="offerMessage()">
+VIEW OFFER
+</button>
+
+</div>
+
+
+<div class="offer">
+
+<div class="offer-icon">🪙</div>
+
+<h3>Earn Coins</h3>
+
+<p>
+Coins can be credited after confirmed conversions.
+</p>
+
+<button onclick="offerMessage()">
+START EARNING
+</button>
+
+</div>
+
+
+<div class="offer">
+
+<div class="offer-icon">🏆</div>
+
+<h3>Rewards</h3>
+
+<p>
+Use your available balance for eligible rewards.
+</p>
+
+<button onclick="offerMessage()">
+VIEW REWARDS
+</button>
+
+</div>
+
+</div>
+
+<p id="offerMsg"
+style="text-align:center;margin-top:20px;color:#ff7188;">
+</p>
+
+</section>
+
+
+<!-- REDEEM -->
+
+<section class="section" id="redeem">
+
+<div class="section-top">
+
+<small>REDEEM</small>
+
+<h2>Enter Your Code</h2>
+
+</div>
+
+<div class="redeem-area">
+
+<p style="color:#9999aa;">
+Current balance:
+<strong>
+<span id="redeemCoins">0</span> coins
+</strong>
+</p>
+
+<input
+id="codeInput"
+placeholder="ENTER REDEEM CODE"
+maxlength="30"
+>
+
+<button onclick="redeem()">
+REDEEM CODE
+</button>
+
+<div id="result"
+style="text-align:center;margin-top:12px;">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CODES -->
+
+<section class="section" id="codes">
+
+<div class="section-top">
+
+<small>AVAILABLE</small>
+
+<h2>Latest Codes</h2>
+
+</div>
+
+<div class="code-grid">
+
+<div class="code-card">
+
+<strong>RZ2026DEMO01</strong>
+
+<small>
+Status: Active<br>
+Expiry: 31 Dec 2026
+</small>
+
+<button class="copy"
+onclick="copyText('RZ2026DEMO01')">
+COPY CODE
+</button>
+
+</div>
+
+
+<div class="code-card">
+
+<strong>RZ2026DEMO02</strong>
+
+<small>
+Status: Active<br>
+Expiry: 30 Nov 2026
+</small>
+
+<button class="copy"
+onclick="copyText('RZ2026DEMO02')">
+COPY CODE
+</button>
+
+</div>
+
+
+<div class="code-card">
+
+<strong>RZEXPIRED001</strong>
+
+<small>
+Status: Expired<br>
+Expiry: 01 Jan 2025
+</small>
+
+<button class="copy"
+onclick="copyText('RZEXPIRED001')">
+COPY CODE
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW -->
+
+<section class="section">
+
+<div class="section-top">
+
+<small>HOW IT WORKS</small>
+
+<h2>Start In 3 Steps</h2>
+
+</div>
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">01</div>
+
+<h3>Choose an Offer</h3>
+
+<p>
+Select an eligible offer from the connected offer system.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">02</div>
+
+<h3>Earn Coins</h3>
+
+<p>
+Confirmed conversions can be credited through a verified system.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">03</div>
+
+<h3>Redeem</h3>
+
+<p>
+Use available coins for eligible rewards.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Redeem Zone
+<br><br>
+Gaming Rewards Platform
+
+</footer>
+
+
+<script>
+
+let coins =
+Number(localStorage.getItem("rzCoins")) || 0;
+
+
+function updateCoins(){
+
+document.getElementById("coins").textContent =
+coins;
+
+document.getElementById("redeemCoins").textContent =
+coins;
+
+localStorage.setItem(
+"rzCoins",
+coins
+);
+
+}
+
+
+function offerMessage(){
+
+document.getElementById("offerMsg").textContent =
+"Offers are not connected yet. Publisher approval and tracking setup are required.";
+
+}
+
+
+function redeem(){
+
+const code =
+document.getElementById("codeInput")
+.value
+.trim()
+.toUpperCase();
+
+const result =
+document.getElementById("result");
+
+if(!code){
+
+result.style.color="#ff7188";
+result.textContent="Enter a redeem code.";
+
+return;
+
+}
+
+result.style.color="#ff7188";
+result.textContent=
+"Redemption system is not connected yet.";
+
+}
+
+
+function copyText(text){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(text)
+.then(function(){
+
+alert("Code copied!");
+
+})
+.catch(function(){
+
+alert("Copy this code: " + text);
+
+});
+
+}else{
+
+alert("Copy this code: " + text);
+
+}
+
+}
+
+
+updateCoins();
+
+</script>
+
+</body>
+</html>

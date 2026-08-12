@@ -1,1 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Redeem Zone - Diamond Rewards</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#05070d;
+    color:#fff;
+    min-height:100vh;
+}
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 6%;
+    background:rgba(5,7,13,.96);
+    border-bottom:1px solid #263044;
+    backdrop-filter:blur(12px);
+}
+
+.brand{
+    color:#fff;
+    text-decoration:none;
+    font-size:21px;
+    font-weight:1000;
+    letter-spacing:1px;
+}
+
+.brand span{
+    color:#00cfff;
+}
+
+.menu{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.menu a{
+    color:#9ca8bb;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.menu a:hover{
+    color:#fff;
+}
+
+.hero{
+    position:relative;
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:70px 20px;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at 50% 20%,#173d65 0%,#09101d 40%,#05070d 75%);
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    width:430px;
+    height:430px;
+    border-radius:50%;
+    background:#00bfff;
+    opacity:.08;
+    filter:blur(70px);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    width:min(850px,100%);
+}
+
+.status{
+    display:inline-block;
+    padding:8px 15px;
+    border:1px solid #00bfff;
+    border-radius:30px;
+    color:#8eeaff;
+    background:#061b28;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    margin:22px 0 8px;
+    font-size:clamp(50px,14vw,100px);
+    line-height:.9;
+    font-weight:1000;
+    letter-spacing:-4px;
+}
+
+.hero h1 span{
+    color:#00d5ff;
+    text-shadow:0 0 10px #00bfff,
+                0 0 35px rgba(0,191,255,.45);
+}
+
+.hero p{
+    max-width:600px;
+    margin:22px auto;
+    color:#a6b1c4;
+    font-size:15px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:14px 24px;
+    border-radius:11px;
+    border:0;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:900;
+    font-size:13px;
+}
+
+.btn-blue{
+    background:linear-gradient(135deg,#00d9ff,#0077ff);
+    color:#fff;
+    box-shadow:0 10px 30px rgba(0,174,255,.2);
+}
+
+.btn-dark{
+    margin-left:7px;
+    background:#111722;
+    color:#fff;
+    border:1px solid #293548;
+}
+
+.diamond-box{
+    width:min(520px,100%);
+    margin:35px auto 0;
+    padding:25px;
+    border-radius:24px;
+    background:linear-gradient(145deg,#101b2a,#081019);
+    border:1px solid #155b78;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+.diamond-title{
+    color:#8391a6;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.diamonds{
+    margin:7px 0;
+    font-size:46px;
+    font-weight:1000;
+    color:#55e5ff;
+}
+
+.diamond-info{
+    color:#69778c;
+    font-size:11px;
+}
+
+.section{
+    width:min(1150px,100%);
+    margin:auto;
+    padding:75px 6%;
+}
+
+.label{
+    color:#00cfff;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:900;
+}
+
+.section h2{
+    margin:6px 0 28px;
+    font-size:35px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    padding:25px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#0d131d,#090d14);
+    border:1px solid #263044;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#00aee0;
+}
+
+.card-icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:7px;
+}
+
+.card p{
+    color:#8793a6;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.card button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:9px;
+    background:#182232;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.redeem{
+    max-width:620px;
+    margin:auto;
+    padding:28px;
+    background:#0c111a;
+    border:1px solid #263044;
+    border-radius:22px;
+}
+
+.redeem-balance{
+    color:#aab5c6;
+    font-size:13px;
+}
+
+.redeem-balance strong{
+    color:#55e5ff;
+}
+
+.redeem input{
+    width:100%;
+    margin:18px 0 10px;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #2b394c;
+    background:#05080e;
+    color:#fff;
+    outline:none;
+}
+
+.redeem input:focus{
+    border-color:#00cfff;
+}
+
+.redeem button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(135deg,#00d9ff,#0077ff);
+    color:white;
+    font-weight:1000;
+    cursor:pointer;
+}
+
+.message{
+    text-align:center;
+    margin-top:12px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.code-name{
+    color:#55e5ff;
+    font-size:18px;
+    font-weight:1000;
+    word-break:break-all;
+}
+
+.code-info{
+    margin:9px 0 15px;
+    color:#7f8b9e;
+    font-size:12px;
+}
+
+.copy{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:9px;
+    background:#1a2637;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.step-number{
+    color:#00d5ff;
+    font-size:28px;
+    font-weight:1000;
+}
+
+.step p{
+    margin-top:8px;
+    color:#8793a6;
+    font-size:13px;
+}
+
+footer{
+    padding:35px 20px;
+    text-align:center;
+    border-top:1px solid #202a39;
+    color:#667387;
+    font-size:12px;
+}
+
+@media(max-width:700px){
+
+    .topbar{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .menu{
+        gap:12px;
+    }
+
+    .hero{
+        min-height:650px;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:60px 18px;
+    }
+
+    .btn-dark{
+        margin-left:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<a href="#home" class="brand">
+REDEEM<span>ZONE</span>
+</a>
+
+<nav class="menu">
+<a href="#home">HOME</a>
+<a href="#earn">EARN</a>
+<a href="#uid">UID</a>
+<a href="#redeem">REDEEM</a>
+<a href="#codes">CODES</a>
+</nav>
+
+</header>
+
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="status">
+⚡ GAMING REWARD HUB
+</div>
+
+<h1>
+REDEEM <span>ZONE</span>
+</h1>
+
+<p>
+Complete eligible offers, collect diamond-style rewards
+and explore available gaming redemption options.
+</p>
+
+<a href="#earn" class="btn btn-blue">
+💎 START EARNING
+</a>
+
+<a href="#codes" class="btn btn-dark">
+🎁 VIEW CODES
+</a>
+
+<div class="diamond-box">
+
+<div class="diamond-title">
+YOUR DIAMOND BALANCE
+</div>
+
+<div class="diamonds">
+<span id="diamondBalance">0</span> 💎
+</div>
+
+<div class="diamond-info">
+Your current reward balance
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="earn">
+
+<div class="label">
+EARN DIAMONDS
+</div>
+
+<h2>
+Featured Rewards
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-icon">🎁</div>
+
+<h3>Gaming Offers</h3>
+
+<p>
+Complete eligible offers through the connected offer system.
+</p>
+
+<button onclick="offerNotice()">
+VIEW OFFER
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">💎</div>
+
+<h3>Diamond Rewards</h3>
+
+<p>
+Confirmed conversions can be credited through a verified system.
+</p>
+
+<button onclick="offerNotice()">
+EARN NOW
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">🏆</div>
+
+<h3>Special Rewards</h3>
+
+<p>
+Check available redemption options.
+</p>
+
+<button onclick="offerNotice()">
+VIEW REWARDS
+</button>
+
+</div>
+
+</div>
+
+<div id="offerMessage" class="message"></div>
+
+</section>
+
+
+<!-- UID -->
+
+<section class="section" id="uid">
+
+<div class="label">
+REWARD REQUEST
+</div>
+
+<h2>
+Enter Your Game UID
+</h2>
+
+<div class="redeem">
+
+<div class="redeem-balance">
+Enter your UID to submit a reward request.
+</div>
+
+<input
+id="gameUID"
+type="text"
+inputmode="numeric"
+maxlength="20"
+placeholder="ENTER YOUR UID"
+>
+
+<button onclick="submitUID()">
+SUBMIT REQUEST
+</button>
+
+<div id="uidMessage" class="message"></div>
+
+</div>
+
+</section>
+
+
+<!-- REDEEM -->
+
+<section class="section" id="redeem">
+
+<div class="label">
+REDEEM
+</div>
+
+<h2>
+Redeem Your Code
+</h2>
+
+<div class="redeem">
+
+<div class="redeem-balance">
+Current balance:
+<strong>
+<span id="redeemBalance">0</span> 💎
+</strong>
+</div>
+
+<input
+id="rewardCode"
+type="text"
+maxlength="30"
+placeholder="ENTER REDEEM CODE"
+>
+
+<button onclick="redeemCode()">
+REDEEM CODE
+</button>
+
+<div id="redeemMessage" class="message"></div>
+
+</div>
+
+</section>
+
+
+<!-- CODES -->
+
+<section class="section" id="codes">
+
+<div class="label">
+LATEST
+</div>
+
+<h2>
+Available Codes
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="code-name">
+RZ2026DEMO01
+</div>
+
+<div class="code-info">
+Status: Active<br>
+Expiry: 31 Dec 2026
+</div>
+
+<button class="copy"
+onclick="copyCode('RZ2026DEMO01')">
+COPY CODE
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="code-name">
+RZ2026DEMO02
+</div>
+
+<div class="code-info">
+Status: Active<br>
+Expiry: 30 Nov 2026
+</div>
+
+<button class="copy"
+onclick="copyCode('RZ2026DEMO02')">
+COPY CODE
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="code-name">
+RZEXPIRED001
+</div>
+
+<div class="code-info">
+Status: Expired<br>
+Expiry: 01 Jan 2025
+</div>
+
+<button class="copy"
+onclick="copyCode('RZEXPIRED001')">
+COPY CODE
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="section">
+
+<div class="label">
+HOW IT WORKS
+</div>
+
+<h2>
+Three Steps
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="step-number">
+01
+</div>
+
+<h3>Choose</h3>
+
+<p>
+Select an eligible offer from the connected system.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="step-number">
+02
+</div>
+
+<h3>Complete</h3>
+
+<p>
+Complete the offer according to its requirements.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="step-number">
+03
+</div>
+
+<h3>Redeem</h3>
+
+<p>
+Use available rewards when redemption is enabled.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Redeem Zone
+<br><br>
+Gaming Rewards Platform
+
+</footer>
+
+
+<script>
+
+let diamonds =
+Number(localStorage.getItem("rzDiamonds")) || 0;
+
+
+function updateBalance(){
+
+document.getElementById("diamondBalance").textContent =
+diamonds;
+
+document.getElementById("redeemBalance").textContent =
+diamonds;
+
+localStorage.setItem(
+"rzDiamonds",
+diamonds
+);
+
+}
+
+
+function offerNotice(){
+
+const message =
+document.getElementById("offerMessage");
+
+message.style.color="#ff7188";
+
+message.textContent =
+"Offers are currently unavailable. Please check again later.";
+
+}
+
+
+function submitUID(){
+
+const uid =
+document.getElementById("gameUID").value.trim();
+
+const message =
+document.getElementById("uidMessage");
+
+if(!uid){
+
+message.style.color="#ff7188";
+
+message.textContent =
+"Please enter your UID.";
+
+return;
+
+}
+
+if(!/^[0-9]{5,20}$/.test(uid)){
+
+message.style.color="#ff7188";
+
+message.textContent =
+"Please enter a valid UID.";
+
+return;
+
+}
+
+message.style.color="#55e5ff";
+
+message.textContent =
+"Your reward request has been submitted for verification.";
+
+}
+
+
+function redeemCode(){
+
+const input =
+document.getElementById("rewardCode");
+
+const message =
+document.getElementById("redeemMessage");
+
+const code =
+input.value.trim().toUpperCase();
+
+if(!code){
+
+message.style.color="#ff7188";
+
+message.textContent =
+"Please enter a redeem code.";
+
+return;
+
+}
+
+message.style.color="#ff7188";
+
+message.textContent =
+"Redemption is currently unavailable.";
+
+}
+
+
+function copyCode(code){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(code)
+
+.then(function(){
+
+alert("Code copied!");
+
+})
+
+.catch(function(){
+
+alert("Copy this code: " + code);
+
+});
+
+}else{
+
+alert("Copy this code: " + code);
+
+}
+
+}
+
+
+updateBalance();
+
+</script>
+
+</body>
+</html>

@@ -1,1 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Google AdSense -->
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4848298746602960"
+crossorigin="anonymous"></script>
+
+<title>Redeem Zone - Gaming Rewards</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#060711;
+  color:#f7f7ff;
+  line-height:1.5;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 6%;
+  background:rgba(6,7,17,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid #24283b;
+}
+
+.logo{
+  color:#fff;
+  text-decoration:none;
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:#9b6cff;
+}
+
+nav{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#aeb5ca;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+}
+
+nav a:hover{
+  color:#fff;
+}
+
+.hero{
+  min-height:78vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:75px 18px;
+  background:
+    radial-gradient(circle at 50% 0%,#3a2170 0%,#15132d 35%,#080914 70%);
+  overflow:hidden;
+}
+
+.badge{
+  padding:8px 15px;
+  border:1px solid #7558c7;
+  border-radius:50px;
+  color:#d8ccff;
+  background:rgba(155,108,255,.08);
+  font-size:12px;
+  font-weight:800;
+}
+
+.hero h1{
+  margin:20px 0 10px;
+  font-size:clamp(48px,15vw,94px);
+  line-height:.95;
+  font-weight:1000;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  color:#9b6cff;
+  text-shadow:0 0 35px rgba(155,108,255,.45);
+}
+
+.hero-text{
+  max-width:600px;
+  color:#aeb6cb;
+  font-size:15px;
+}
+
+.balance{
+  width:min(500px,100%);
+  margin-top:30px;
+  padding:26px;
+  border:1px solid #7053c5;
+  border-radius:22px;
+  background:linear-gradient(145deg,#131729,#24164d);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.balance-title{
+  color:#969fb6;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.coins{
+  margin:5px 0;
+  font-size:46px;
+  font-weight:1000;
+  color:#ffd76a;
+}
+
+.balance-small{
+  color:#858da4;
+  font-size:11px;
+}
+
+.primary{
+  display:inline-block;
+  margin-top:17px;
+  padding:14px 25px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#9b6cff,#7046dc);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(139,92,246,.25);
+}
+
+.primary:hover{
+  transform:translateY(-2px);
+}
+
+.section{
+  width:min(1150px,100%);
+  margin:auto;
+  padding:70px 6%;
+}
+
+.tag{
+  color:#9b6cff;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.section h2{
+  margin:5px 0 28px;
+  font-size:35px;
+}
+
+.offer-card{
+  padding:30px;
+  text-align:center;
+  border:1px solid #292f45;
+  border-radius:22px;
+  background:linear-gradient(145deg,#101321,#151a2b);
+}
+
+.offer-icon{
+  width:75px;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  border-radius:20px;
+  background:#211844;
+  font-size:40px;
+}
+
+.offer-card h3{
+  margin:15px 0 5px;
+  font-size:22px;
+}
+
+.offer-card p{
+  color:#9da6ba;
+  font-size:14px;
+}
+
+.offer-note{
+  max-width:600px;
+  margin:18px auto 0;
+  padding:12px;
+  border-radius:11px;
+  background:#171c2b;
+  color:#858ea5;
+  font-size:12px;
+}
+
+.locked{
+  opacity:.65;
+}
+
+.redeem-box{
+  max-width:600px;
+  margin:auto;
+  padding:26px;
+  border:1px solid #292f45;
+  border-radius:20px;
+  background:#101321;
+}
+
+.redeem-box p{
+  color:#aab2c6;
+  margin-bottom:15px;
+}
+
+.redeem-box input{
+  width:100%;
+  padding:15px;
+  margin-bottom:12px;
+  border:1px solid #30374c;
+  border-radius:11px;
+  outline:none;
+  background:#080a12;
+  color:#fff;
+}
+
+.redeem-box input:focus{
+  border-color:#8b5cf6;
+}
+
+.redeem-box button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:11px;
+  background:#8b5cf6;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.result{
+  min-height:24px;
+  margin-top:12px;
+  text-align:center;
+  font-weight:800;
+  font-size:13px;
+}
+
+.ok{
+  color:#4ade80;
+}
+
+.bad{
+  color:#fb7185;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  padding:22px;
+  border:1px solid #292f45;
+  border-radius:18px;
+  background:linear-gradient(145deg,#101321,#141827);
+}
+
+.card:hover{
+  border-color:#7558c7;
+  transform:translateY(-3px);
+}
+
+.code{
+  color:#fff;
+  font-size:18px;
+  font-weight:1000;
+  word-break:break-all;
+}
+
+.meta{
+  margin:10px 0 15px;
+  color:#8e97ac;
+  font-size:12px;
+}
+
+.card button{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#292f47;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.card button:hover{
+  background:#7046dc;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.step{
+  padding:24px;
+  border:1px solid #292f45;
+  border-radius:18px;
+  background:#101321;
+}
+
+.step b{
+  color:#9b6cff;
+  font-size:28px;
+}
+
+.step h3{
+  margin:8px 0;
+}
+
+.step p{
+  color:#929bb0;
+  font-size:14px;
+}
+
+.about{
+  text-align:center;
+}
+
+.about p{
+  max-width:750px;
+  margin:auto;
+  color:#969fb4;
+}
+
+footer{
+  padding:30px 18px;
+  text-align:center;
+  color:#687186;
+  border-top:1px solid #202538;
+  font-size:12px;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  nav{
+    justify-content:center;
+    gap:12px;
+  }
+
+  .hero{
+    min-height:72vh;
+    padding:60px 18px;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .section{
+    padding:55px 18px;
+  }
+
+  .cards,
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .offer-card,
+  .redeem-box{
+    padding:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+
+<a class="logo" href="#home">
+REDEEM<span>ZONE</span>
+</a>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#earn">Earn</a>
+<a href="#redeem">Redeem</a>
+<a href="#codes">Codes</a>
+<a href="#how">How It Works</a>
+</nav>
+
+</header>
+
+
+<section id="home" class="hero">
+
+<div class="badge">
+🎮 GAMING REWARD HUB
+</div>
+
+<h1>
+Redeem <span>Zone</span>
+</h1>
+
+<p class="hero-text">
+Discover gaming offers, collect coins and access available rewards.
+</p>
+
+<div class="balance">
+
+<div class="balance-title">
+YOUR COIN BALANCE
+</div>
+
+<div class="coins">
+<span id="coinBalance">0</span> 🪙
+</div>
+
+<div class="balance-small">
+Your balance is stored locally on this device.
+</div>
+
+<a href="#earn" class="primary">
+EARN COINS
+</a>
+
+</div>
+
+</section>
+
+
+<section id="earn" class="section">
+
+<div class="tag">
+EARN COINS
+</div>
+
+<h2>
+Complete Offers
+</h2>
+
+<div class="offer-card">
+
+<div class="offer-icon">
+🎁
+</div>
+
+<h3>
+Gaming Offers
+</h3>
+
+<p>
+Complete eligible offers to earn rewards.
+</p>
+
+<button
+class="primary locked"
+onclick="showOfferMessage()">
+OPEN OFFERS
+</button>
+
+<div class="offer-note">
+Offers will be connected after the publisher account and tracking system are approved.
+</div>
+
+</div>
+
+<div id="offerMessage" class="result"></div>
+
+</section>
+
+
+<section id="redeem" class="section">
+
+<div class="tag">
+REDEEM
+</div>
+
+<h2>
+Redeem Your Coins
+</h2>
+
+<div class="redeem-box">
+
+<p>
+Current balance:
+<strong>
+<span id="redeemBalance">0</span> coins
+</strong>
+</p>
+
+<input
+id="rewardCode"
+type="text"
+placeholder="Enter reward code"
+maxlength="30"
+>
+
+<button onclick="redeemReward()">
+REDEEM CODE
+</button>
+
+<div id="redeemResult" class="result"></div>
+
+</div>
+
+</section>
+
+
+<section id="codes" class="section">
+
+<div class="tag">
+LATEST CODES
+</div>
+
+<h2>
+Redeem Codes
+</h2>
+
+<div id="cards" class="cards"></div>
+
+</section>
+
+
+<section id="how" class="section">
+
+<div class="tag">
+HOW IT WORKS
+</div>
+
+<h2>
+Three Simple Steps
+</h2>
+
+<div class="steps">
+
+<div class="step">
+<b>01</b>
+<h3>Complete an Offer</h3>
+<p>
+Choose an eligible offer from the connected offer system.
+</p>
+</div>
+
+<div class="step">
+<b>02</b>
+<h3>Receive Coins</h3>
+<p>
+Confirmed conversions can be credited through a verified server-side system.
+</p>
+</div>
+
+<div class="step">
+<b>03</b>
+<h3>Redeem</h3>
+<p>
+Use available coins for eligible rewards.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section about">
+
+<div class="tag">
+ABOUT
+</div>
+
+<h2>
+Redeem Zone
+</h2>
+
+<p>
+Redeem Zone is a gaming rewards website designed to help
+users discover eligible offers, track rewards and access
+available redemption options.
+</p>
+
+</section>
+
+
+<footer>
+© 2026 Redeem Zone • Gaming Rewards
+</footer>
+
+
+<script>
+
+let coins =
+Number(localStorage.getItem("rzCoins")) || 0;
+
+
+function updateCoins(){
+
+document.getElementById("coinBalance").textContent =
+coins;
+
+document.getElementById("redeemBalance").textContent =
+coins;
+
+localStorage.setItem(
+"rzCoins",
+coins
+);
+
+}
+
+
+function showOfferMessage(){
+
+const message =
+document.getElementById("offerMessage");
+
+message.textContent =
+"Offers are not connected yet. Please check back later.";
+
+message.className =
+"result bad";
+
+}
+
+
+function redeemReward(){
+
+const input =
+document.getElementById("rewardCode");
+
+const result =
+document.getElementById("redeemResult");
+
+const code =
+input.value.trim().toUpperCase();
+
+if(!code){
+
+result.textContent =
+"Please enter a reward code.";
+
+result.className =
+"result bad";
+
+return;
+
+}
+
+result.textContent =
+"Redemption system is not connected yet.";
+
+result.className =
+"result bad";
+
+}
+
+
+/* DEMO CODES */
+
+const codes = [
+
+{
+c:"RZ2026DEMO01",
+s:"Active",
+e:"31 Dec 2026"
+},
+
+{
+c:"RZ2026DEMO02",
+s:"Active",
+e:"30 Nov 2026"
+},
+
+{
+c:"RZEXPIRED001",
+s:"Expired",
+e:"01 Jan 2025"
+}
+
+];
+
+
+function renderCodes(){
+
+document.getElementById("cards").innerHTML =
+
+codes.map((x,i)=>`
+
+<div class="card">
+
+<div class="code">
+${x.c}
+</div>
+
+<div class="meta">
+Status: ${x.s}
+<br>
+Expiry: ${x.e}
+</div>
+
+<button onclick="copyCode(${i})">
+COPY CODE
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function copyCode(i){
+
+const code =
+codes[i].c;
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(code)
+
+.then(()=>{
+
+alert("Code copied!");
+
+})
+
+.catch(()=>{
+
+alert("Copy manually: " + code);
+
+});
+
+}else{
+
+alert("Copy manually: " + code);
+
+}
+
+}
+
+
+updateCoins();
+renderCodes();
+
+</script>
+
+</body>
+</html>

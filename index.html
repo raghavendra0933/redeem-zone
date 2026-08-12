@@ -1,1 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Redeem Zone</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#070912;
+color:#f5f7ff;
+line-height:1.5
+}
+
+.nav{
+position:sticky;
+top:0;
+z-index:10;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 6%;
+background:rgba(7,9,18,.97);
+border-bottom:1px solid #252c40
+}
+
+.logo{
+font-size:20px;
+font-weight:900;
+color:#fff;
+text-decoration:none
+}
+
+.logo span,h1 span{
+color:#9b6cff
+}
+
+nav{
+display:flex;
+gap:15px;
+flex-wrap:wrap
+}
+
+nav a{
+color:#b9c0d4;
+text-decoration:none;
+font-size:14px
+}
+
+.hero{
+min-height:75vh;
+text-align:center;
+padding:70px 18px;
+background:radial-gradient(circle at top,#25164d,#0b0d19 52%,#070912)
+}
+
+.badge{
+display:inline-block;
+border:1px solid #6b52b8;
+border-radius:30px;
+padding:7px 13px;
+color:#d3c9ff;
+font-size:12px;
+font-weight:bold
+}
+
+h1{
+font-size:clamp(48px,14vw,90px);
+line-height:1;
+margin:18px 0 8px
+}
+
+.hero p{
+color:#aeb6cb
+}
+
+.balance{
+max-width:600px;
+margin:30px auto;
+padding:25px;
+background:linear-gradient(135deg,#151a2b,#21164a);
+border:1px solid #6b52b8;
+border-radius:20px
+}
+
+.balance-title{
+color:#aeb6cb;
+font-size:13px
+}
+
+.coins{
+font-size:42px;
+font-weight:900;
+color:#ffd76a
+}
+
+.button{
+display:inline-block;
+border:0;
+border-radius:12px;
+padding:14px 22px;
+background:#8b5cf6;
+color:#fff;
+font-weight:800;
+cursor:pointer;
+text-decoration:none;
+margin-top:12px
+}
+
+.section{
+max-width:1100px;
+margin:auto;
+padding:65px 6%
+}
+
+.tag{
+color:#9b6cff;
+font-size:12px;
+font-weight:800;
+letter-spacing:2px
+}
+
+.section h2{
+font-size:34px;
+margin:5px 0 28px
+}
+
+.offer-card{
+background:#101421;
+border:1px solid #252c40;
+border-radius:20px;
+padding:28px;
+text-align:center
+}
+
+.offer-icon{
+font-size:50px
+}
+
+.offer-card p{
+color:#9ea7bb
+}
+
+.offerwall{
+display:none;
+margin-top:25px;
+padding:10px;
+background:#080b14;
+border:1px solid #252c40;
+border-radius:16px
+}
+
+.offerwall iframe{
+width:100%;
+height:750px;
+border:0;
+border-radius:12px
+}
+
+.close{
+background:#293147;
+border:0;
+color:#fff;
+padding:10px 18px;
+border-radius:10px;
+font-weight:bold;
+margin-bottom:10px
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px
+}
+
+.card{
+background:#101421;
+border:1px solid #252c40;
+border-radius:18px;
+padding:22px
+}
+
+.code{
+font-size:19px;
+font-weight:900;
+word-break:break-all
+}
+
+.meta{
+color:#8f98ae;
+font-size:13px;
+margin:10px 0 18px
+}
+
+.card button{
+width:100%;
+padding:12px;
+border:0;
+border-radius:10px;
+background:#293147;
+color:#fff;
+font-weight:800
+}
+
+.steps{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px
+}
+
+.step{
+background:#101421;
+border:1px solid #252c40;
+border-radius:18px;
+padding:22px
+}
+
+.step b{
+font-size:25px;
+color:#9b6cff
+}
+
+.step p{
+color:#9ea7bb
+}
+
+.about{
+text-align:center
+}
+
+.about p{
+max-width:750px;
+margin:auto;
+color:#9ea7bb
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#697287;
+border-top:1px solid #1e2435
+}
+
+@media(max-width:700px){
+
+.nav{
+flex-direction:column
+}
+
+nav{
+justify-content:center
+}
+
+.cards,.steps{
+grid-template-columns:1fr
+}
+
+.section{
+padding:55px 18px
+}
+
+.offerwall iframe{
+height:700px
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+
+<a class="logo" href="#home">
+REDEEM<span>ZONE</span>
+</a>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#earn">Earn Coins</a>
+<a href="#codes">Codes</a>
+<a href="#how">How It Works</a>
+</nav>
+
+</header>
+
+
+<section id="home" class="hero">
+
+<div class="badge">
+🎮 GAMING REWARD HUB
+</div>
+
+<h1>
+Redeem <span>Zone</span>
+</h1>
+
+<p>
+Complete eligible offers and earn coins.
+</p>
+
+<div class="balance">
+
+<div class="balance-title">
+YOUR COIN BALANCE
+</div>
+
+<div class="coins">
+<span id="coins">0</span> 🪙
+</div>
+
+<button class="button" onclick="goEarn()">
+EARN COINS
+</button>
+
+</div>
+
+</section>
+
+
+<section id="earn" class="section">
+
+<div class="tag">
+EARN COINS
+</div>
+
+<h2>
+Complete Offers
+</h2>
+
+<div class="offer-card">
+
+<div class="offer-icon">
+🎁
+</div>
+
+<h3>
+Lootwalls Offerwall
+</h3>
+
+<p>
+Complete eligible offers to earn rewards.
+</p>
+
+<button class="button" onclick="openOffers()">
+OPEN OFFERS
+</button>
+
+<div id="offerwall" class="offerwall">
+
+<button class="close" onclick="closeOffers()">
+CLOSE
+</button>
+
+<iframe
+id="offerFrame"
+title="Lootwalls Offerwall">
+</iframe>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="codes" class="section">
+
+<div class="tag">
+AVAILABLE CODES
+</div>
+
+<h2>
+Redeem Codes
+</h2>
+
+<div id="cards" class="cards"></div>
+
+</section>
+
+
+<section id="how" class="section">
+
+<div class="tag">
+HOW IT WORKS
+</div>
+
+<h2>
+Three Simple Steps
+</h2>
+
+<div class="steps">
+
+<div class="step">
+<b>01</b>
+<h3>Open Offers</h3>
+<p>
+Open the Lootwalls offerwall.
+</p>
+</div>
+
+<div class="step">
+<b>02</b>
+<h3>Complete</h3>
+<p>
+Complete an eligible offer according to its requirements.
+</p>
+</div>
+
+<div class="step">
+<b>03</b>
+<h3>Earn</h3>
+<p>
+Confirmed conversions can be credited through a secure postback system.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section about">
+
+<div class="tag">
+ABOUT
+</div>
+
+<h2>
+Redeem Zone
+</h2>
+
+<p>
+Redeem Zone is a gaming rewards website for discovering
+eligible offers and available redeem rewards.
+</p>
+
+</section>
+
+
+<footer>
+© 2026 Redeem Zone
+</footer>
+
+
+<script>
+
+/*
+=================================================
+LOOTWALLS API KEY
+=================================================
+
+IMPORTANT:
+Replace YOUR_NEW_API_KEY with your new Lootwalls
+API Key.
+
+DO NOT put API Secret here.
+DO NOT put Postback Secret here.
+=================================================
+*/
+
+const LOOTWALLS_API_KEY =
+"rRxR30f8VfSTej7E1eqdJK3HfCFq5jeV";
+
+
+/*
+Create a unique user ID for this browser.
+*/
+
+function getUserId(){
+
+let id=localStorage.getItem(
+"redeem_zone_user_id"
+);
+
+if(!id){
+
+id="rz_"+Date.now()+"_"+Math.random()
+.toString(36)
+.substring(2,10);
+
+localStorage.setItem(
+"redeem_zone_user_id",
+id
+);
+
+}
+
+return id;
+}
+
+
+const userId=getUserId();
+
+
+/*
+Coins shown locally.
+Real rewards should only be credited
+after verified server-side conversion.
+*/
+
+let coins=Number(
+localStorage.getItem("redeem_zone_coins")
+)||0;
+
+
+function updateCoins(){
+
+document.getElementById(
+"coins"
+).textContent=coins;
+
+localStorage.setItem(
+"redeem_zone_coins",
+coins
+);
+
+}
+
+
+function goEarn(){
+
+document.getElementById(
+"earn"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function openOffers(){
+
+if(
+LOOTWALLS_API_KEY==="YOUR_NEW_API_KEY"
+){
+
+alert(
+"First add your Lootwalls API Key in the code."
+);
+
+return;
+}
+
+
+/*
+Use the exact Offerwall iframe URL/code
+shown in your Lootwalls Integration page.
+
+If Lootwalls gives you a complete iframe code,
+replace this generated URL with their exact iframe URL.
+*/
+
+const offerUrl =
+"https://www.lootwalls.com/wall"+
+"?apiKey="+
+encodeURIComponent(
+LOOTWALLS_API_KEY
+)+
+"&userId="+
+encodeURIComponent(
+userId
+);
+
+
+document.getElementById(
+"offerFrame"
+).src=offerUrl;
+
+document.getElementById(
+"offerwall"
+).style.display="block";
+
+}
+
+
+function closeOffers(){
+
+document.getElementById(
+"offerwall"
+).style.display="none";
+
+document.getElementById(
+"offerFrame"
+).src="";
+
+}
+
+
+/*
+Redeem codes
+*/
+
+const codes=[
+
+{
+c:"RZ2026DEMO01",
+s:"Active",
+e:"31 Dec 2026"
+},
+
+{
+c:"RZ2026DEMO02",
+s:"Active",
+e:"30 Nov 2026"
+},
+
+{
+c:"RZEXPIRED001",
+s:"Expired",
+e:"01 Jan 2025"
+}
+
+];
+
+
+function renderCodes(){
+
+document.getElementById(
+"cards"
+).innerHTML=
+
+codes.map(
+(x,i)=>`
+
+<div class="card">
+
+<div class="code">
+${x.c}
+</div>
+
+<div class="meta">
+Status: ${x.s}
+<br>
+Expiry: ${x.e}
+<br>
+Reward: Gaming Reward
+</div>
+
+<button onclick="copyCode(${i})">
+COPY CODE
+</button>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+function copyCode(i){
+
+const c=codes[i].c;
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(c)
+.then(()=>{
+alert("Code copied!");
+})
+.catch(()=>{
+alert("Copy this code: "+c);
+});
+
+}else{
+
+alert("Copy this code: "+c);
+
+}
+
+}
+
+
+updateCoins();
+renderCodes();
+
+</script>
+
+</body>
+</html>
